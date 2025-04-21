@@ -39,7 +39,8 @@
 +endfunction()
 +
 +if($ENV{PROCESSOR_ARCHITECTURE} MATCHES "AMD64" OR
-+   $ENV{PROCESSOR_ARCHITECTURE} MATCHES "IA64")
++   $ENV{PROCESSOR_ARCHITECTURE} MATCHES "IA64" OR
++   $ENV{PROCESSOR_ARCHITECTURE} MATCHES "ARM64")
 +  set(MINGW_CPU_ARCH "x86_64")
 +else()
 +  set(MINGW_CPU_ARCH "i686")
@@ -49,7 +50,7 @@
 +check_symbol_exists(_X86_ "Windows.h" _X86_)
 +check_symbol_exists(_AMD64_ "Windows.h" _AMD64_)
 +check_symbol_exists(_ARM_ "Windows.h" _ARM_)
-+check_symbol_exists(_ARM64_ "Windows.h" _ARM64_)
++check_symbol_exists(_M_ARM64_ "Windows.h" _ARM64_)
 +
 +if(_X86_)
 +  set(MINGW_TARGET_ARCH "x86")
