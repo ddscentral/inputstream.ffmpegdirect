@@ -47,7 +47,7 @@ execute_process(COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/usr/bin/bash.exe -lc
 if($ENV{PROCESSOR_ARCHITECTURE} MATCHES "ARM64")
    # mingw-w64-cross-mingwarm64 does not create gcc anywhere in the path
    execute_process(COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/usr/bin/bash.exe -lc
-    "find /opt/bin -type f -name 'aarch64-w64-mingw32-*' -exec /bin/bash -c 'ln -s {} $(echo \"/usr/bin/{}\" | sed -e ''s#/opt/bin/aarch64-w64-mingw32-##g'')' \;")
+    "which gcc || find /opt/bin -type f -name 'aarch64-w64-mingw32-*' -exec /bin/bash -c 'ln -s {} $(echo \"/usr/bin/{}\" | sed -e ''s#/opt/bin/aarch64-w64-mingw32-##g'')' \;")
 endif()
 
 file(GLOB_RECURSE shared_libs ${CMAKE_CURRENT_SOURCE_DIR}/${MINGW_PATH}/*.dll.a)
