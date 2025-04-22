@@ -20,7 +20,7 @@ if($ENV{PROCESSOR_ARCHITECTURE} MATCHES "AMD64" OR
 elseif($ENV{PROCESSOR_ARCHITECTURE} MATCHES "ARM64")
    set(HOST mingw-w64-cross-mingwarm64)
    set(LUAHOST mingw-w64-x86_64)
-   set(MINGW_PATH "mingw32")
+   set(MINGW_PATH "mingw64")
 else()
    set(HOST mingw-w64-i686)
    set(LUAHOST mingw-w64-i686)
