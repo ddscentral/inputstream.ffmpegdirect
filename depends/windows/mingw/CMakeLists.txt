@@ -13,12 +13,17 @@ if(0)
 endif()
 
 if($ENV{PROCESSOR_ARCHITECTURE} MATCHES "AMD64" OR
-   $ENV{PROCESSOR_ARCHITECTURE} MATCHES "IA64" OR 
-   $ENV{PROCESSOR_ARCHITECTURE} MATCHES "ARM64")
+   $ENV{PROCESSOR_ARCHITECTURE} MATCHES "IA64") 
    set(HOST mingw-w64-x86_64)
+   set(LUAHOST mingw-w64-x86_64)
    set(MINGW_PATH "mingw64")
+elseif($ENV{PROCESSOR_ARCHITECTURE} MATCHES "ARM64")
+   set(HOST mingw-w64-cross-mingwarm64)
+   set(LUAHOST mingw-w64-x86_64)
+   set(MINGW_PATH "mingw32")
 else()
    set(HOST mingw-w64-i686)
+   set(LUAHOST mingw-w64-i686)
    set(MINGW_PATH "mingw32")
 endif()
 
@@ -29,7 +34,7 @@ execute_process(COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/usr/bin/bash.exe -lc
 execute_process(COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/usr/bin/bash.exe -lc
     "pacman --noconfirm -Syuu \
                            mingw-w64-cross-binutils \
-                           ${HOST}-gcc ${HOST}-lua \
+                           ${HOST}-gcc ${LUAHOST}-lua \
                            ${HOST}-headers \
                            make \
                            autoconf \
