@@ -30,6 +30,8 @@ endif()
 execute_process(COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/usr/bin/bash.exe -lc
     " " ERROR_QUIET)
 execute_process(COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/usr/bin/bash.exe -lc
+    "rm /var/lib/pacman/sync/*")    
+execute_process(COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/usr/bin/bash.exe -lc
     "pacman --noconfirm -Syuu")
 execute_process(COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/usr/bin/bash.exe -lc
     "pacman --noconfirm -Syuu \
