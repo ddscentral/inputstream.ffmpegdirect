@@ -65,8 +65,8 @@
 +  config_path="$source_path/mingw.conf"
 +fi
 +if [ ! -f $config_path ]; then
-+  echo "ERROR: Given config file '$config_path' not exist"
-+  exit 1
++  echo "WARN: Given config file '$config_path' not exist, using a blank file."
++  touch "$config_path"
 +fi
 +
 +. "$config_path"
